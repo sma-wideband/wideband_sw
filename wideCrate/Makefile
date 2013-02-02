@@ -1,7 +1,8 @@
+IDIR=../../katcp_devel
 RPC = /global/rpcFiles/
 wideCrate: wideCrate.c dDS.h integration.h  Makefile
-	gcc -o wideCrate -pthread wideCrate.c dDS_clnt.o dDS_xdr.o \
-	integration_xdr.o -lkatcp -lrt
+	gcc -o wideCrate -pthread wideCrate.c -I$(IDIR)/katcp dDS_clnt.o dDS_xdr.o \
+	integration_xdr.o -lkatcp -lrt -L$(IDIR)/katcp
 
 dDS.h: $(RPC)dDS.x Makefile
 	cp $(RPC)dDS.x ./

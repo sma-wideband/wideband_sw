@@ -180,8 +180,8 @@ int handle_package(intgWalshPackage *package, int hb_offset) {
     return ERROR;
   }
 
-  /* send the walsh arm request, with 20s timeout */
-  katcp_result = send_rpc_katcl(l, 20000,
+  /* send the walsh arm request, with 60s timeout */
+  katcp_result = send_rpc_katcl(l, 60000,
   				KATCP_FLAG_FIRST | KATCP_FLAG_STRING, "?sma-walsh-arm",
   				KATCP_FLAG_ULONG, sowf_ts.tv_sec,
   				KATCP_FLAG_ULONG, sowf_ts.tv_nsec,
