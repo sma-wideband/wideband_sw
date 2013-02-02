@@ -173,7 +173,7 @@ int handle_package(intgWalshPackage *package, int hb_offset) {
   sowf_ts.tv_nsec = (package->startuSec) * 1e3;
 
   /* connect to roach2-02 */
-  l = create_name_rpc_katcl("roach2-02");
+  l = create_name_rpc_katcl("roach2-03");
   if(l == NULL){
     fprintf(stderr, "unable to create client connection to roach2-02: %s\n", strerror(errno));
     result->status = ERROR;
@@ -271,8 +271,8 @@ int main(int argc, char **argv)
   }
 
   /* Make the client call to the DDS server */
-  if (!(cl = clnt_create("mrg", DDSPROG, DDSVERS, "tcp"))) {
-    clnt_pcreateerror("Creating handle to server on mrg");
+  if (!(cl = clnt_create("172.22.4.189", DDSPROG, DDSVERS, "tcp"))) {
+    clnt_pcreateerror("Creating handle to server on newdds");
     exit(ERROR);
   }
   command.antenna = DDS_ALL_ANTENNAS;
