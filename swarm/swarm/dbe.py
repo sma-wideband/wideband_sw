@@ -72,8 +72,17 @@ class SwarmDBE(SwarmROACH):
         # First program the FPGA
         self._program(bitcode)
 
+        # Sync the internal 1PPS
+        self.sync_1pps()
+
         # Configure the RX interfaces
         return self.setup_rx_interfaces(macbase, ipbase)
+
+    def sync_1pps(self):
+
+        self.roach2.write(SWARM_DBE_ONEPPS_CTRL, pack(SWARM_REG_FMT, 0))
+        self.roach2.write(SWARM_DBE_ONEPPS_CTRL, pack(SWARM_REG_FMT, (1<<31)))
+        self.roach2.write(SWARM_DBE_ONEPPS_CTRL, pack(SWARM_REG_FMT, 0))
 
     def setup_rx_interfaces(self, macbase, ipbase, bhmac=SWARM_BLACK_HOLE_MAC):
 
