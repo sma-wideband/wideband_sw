@@ -67,7 +67,10 @@ class SwarmDBE(SwarmROACH):
         super(SwarmROACH, self).__init__(roach2_host)
         self.swarm = swarm
 
-    def setup(self, ipbase=0x9d000000, macbase=0x000f9d9d9d00):
+    def setup(self, bitcode, ipbase=0x9d000000, macbase=0x000f9d9d9d00):
+
+        # First program the FPGA
+        self._program(bitcode)
 
         # Configure the RX interfaces
         return self.setup_rx_interfaces(macbase, ipbase)
