@@ -52,8 +52,9 @@ def main():
                         help='Save raw data from each FID to file')
     parser.add_argument('--log-stats', dest='log_stats', action='store_true',
                         help='Print out some baselines statistics (NOTE: very slow!)')
-    parser.add_argument('--calibrate-vlbi', dest='calibrate_vlbi', action='store_true',
-                        help='Solve for per-antenna complex gains to calibrate the phased sum')
+    parser.add_argument('--calibrate-vlbi', dest='calibrate_vlbi', nargs='?', const='low', default=None,
+                        help='Solve for complex gains (and possibly delay) to calibrate the phased sum '
+                        '(optionally append either "high" or "low" for different SNR algorithms')
     args = parser.parse_args()
 
     # Set logging level given verbosity
@@ -111,7 +112,19 @@ def main():
         if args.calibrate_vlbi:
 
             # Use a callback to calibrate fringes for VLBI
-            swarm_handler.add_callback(CalibrateVLBI, reference=reference)
+
+            if args.calibrate_vlbi == 'low':
+
+                # Low SNR. Use single-channel solver and normalize corr. matrix
+                swarm_handler.add_callback(CalibrateVLBI, single_chan=True, normed=True, reference=reference)
+
+            elif args.calibrate_vlbi == 'high':
+
+                # High SNR. Use full spectrum solver and do not normalize corr. matrix
+                swarm_handler.add_callback(CalibrateVLBI, single_chan=False, normed=False, reference=reference)
+
+            else:
+                raise argparse.ArugmentError('--calibrate-vlbi must be either "low" or "high"!')
 
         if args.save_rawdata:
 
