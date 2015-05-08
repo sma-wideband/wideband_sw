@@ -1065,8 +1065,15 @@ class Swarm:
         self.logger.info('MCNT sync attempted')
         sleep(1)
 
+        # Do a threaded sync of BENG
+        beng_threads = list(Thread(target=m.sync_beng) for m in valid_members)
+        for thread in beng_threads:
+            thread.start()
+        self.logger.info('BENG sync attempted')
+        sleep(1)
+
         # Finally join all threads
-        for thread in sowf_threads + pps_threads + mcnt_threads:
+        for thread in sowf_threads + pps_threads + mcnt_threads + beng_threads:
             thread.join()
 
     def setup(self, bitcode, itime, listener):
