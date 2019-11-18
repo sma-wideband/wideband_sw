@@ -16,9 +16,9 @@ from signal import (
     )
 # import pyopmess
 
-from .swarm.core import ExceptingThread, SwarmQuadrant, SwarmInput, Swarm
-from .swarm.defines import *
-from .swarm.data import SwarmDataCatcher, SwarmDataHandler
+from swarm.core import ExceptingThread, SwarmQuadrant, SwarmInput, Swarm
+from swarm.defines import *
+from swarm.data import SwarmDataCatcher, SwarmDataHandler
 
 from .rawbacks.check_ramp import CheckRamp
 from .rawbacks.save_rawdata import SaveRawData
