@@ -1,18 +1,18 @@
-from defines import *
+from .defines import *
 
-from base import (
+from .base import (
     Interface,
     SwarmROACH,
 )
 
-from core import (
+from .core import (
     SwarmInput,
     SwarmQuadrant,
     SwarmMember,
     Swarm,
 )
 
-from data import (
+from .data import (
     SwarmListener, 
     SwarmDataCatcher, 
     SwarmDataPackage, 
@@ -20,13 +20,13 @@ from data import (
     SwarmDataHandler,
     )
 
-from xeng import (
+from .xeng import (
     SwarmBaseline,
     SwarmXengineWord,
     SwarmXengine,
 )
 
-from dbe import (
+from .dbe import (
     SwarmDBE,
     DBEImposter,
     MK6Imposter,
