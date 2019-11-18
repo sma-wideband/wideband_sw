@@ -4,13 +4,13 @@ from struct import pack, unpack
 from random import randint
 from socket import inet_ntoa
 from threading import Thread
-from Queue import Queue, Empty
+from queue import Queue, Empty
 from traceback import format_exception
 from collections import OrderedDict
 
 from numpy import array, clip, roll
 
-from corr.katcp_wrapper import FpgaClient
+import casperfpga
 
 from adc5g import (
     pretty_glitch_profile,
@@ -22,12 +22,8 @@ from adc5g import (
 
 import pydsm
 
-from defines import *
-import base
-import xeng
-import data
-import qdr
-import dbe
+from .defines import *
+from . import base, xeng, data, qdr, dbe
 
 
 class ExceptingThread(Thread):
