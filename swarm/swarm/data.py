@@ -1,7 +1,7 @@
 import gc, math, logging, fcntl
 from time import time, sleep
 from struct import calcsize, pack, unpack
-from Queue import Queue, Empty
+from queue import Queue, Empty
 from threading import Thread, Event, active_count
 from itertools import combinations
 from socket import (
@@ -13,12 +13,9 @@ from socket import (
 
 from numpy import array, nan, fromstring, empty, reshape
 from numba import jit
-import core
-from defines import *
-from xeng import (
-    SwarmBaseline, 
-    SwarmXengine,
-    )
+from . import core
+from .defines import *
+from .xeng import SwarmBaseline, SwarmXengine
 
 
 SIOCGIFADDR = 0x8915
