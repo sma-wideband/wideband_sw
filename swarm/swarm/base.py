@@ -1,10 +1,10 @@
 import logging, sys
-from ConfigParser import ConfigParser
+from configparser import ConfigParser
 
-from corr.katcp_wrapper import FpgaClient
+import casperfpga
 from katcp import Message
 
-from defines import *
+from .defines import *
 
 
 module_logger = logging.getLogger(__name__)
@@ -52,7 +52,7 @@ class SwarmROACH(object):
     def _connect(self, roach2_host):
 
         # Connect and wait until ready
-        self.roach2 = FpgaClient(roach2_host)
+        self.roach2 = casperfpga.CasperFpga(roach2_host)
         if roach2_host:
             if not self.roach2.wait_connected(timeout=5):
                 raise RuntimeError('Timeout trying to connect to {0}.'
