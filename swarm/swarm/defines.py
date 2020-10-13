@@ -5,10 +5,10 @@ SWARM_IDLE_BITCODE = 'idle.bof'
 SWARM_ROACH2_IP = 'roach2-%02x'
 
 SWARM_MAPPINGS = [
-    '/global/configFiles/swarmMapping.quad1',
-    '/global/configFiles/swarmMapping.quad2',
-    '/global/configFiles/swarmMapping.quad3',
-    '/global/configFiles/swarmMapping.quad4',
+    '/global/configFiles/swarmMapping.quad1.vlbi4-8',
+    '/global/configFiles/swarmMapping.quad2.vlbi4-8',
+    '/global/configFiles/swarmMapping.quad3.vlbi4-8',
+    '/global/configFiles/swarmMapping.quad4.vlbi4-8',
     ]
 SWARM_MAPPING_COMMENT = '#'
 SWARM_MAPPING_MEM_PARAM = '!'
